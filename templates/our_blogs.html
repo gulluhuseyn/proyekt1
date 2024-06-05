@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block page_title %}
+    Our blogs
+{% endblock page_title %}
+{% block body %}
+    <h2>Our blogs</h2>
+    <div class="articles">
+        <ul>
+            {% for article in articles %}
+                <li>
+                    <h3>{{article.author}}</h3>
+                    <h4>{{article.title}}</h4>
+                    <p>{{article.content}}</p>
+                    <small>{{article.created_date}}</small>
+                    <hr>
+                </li>
+                
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock body %}
+
