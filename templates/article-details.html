@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block page_title %}
+    Məqalə detay
+{% endblock page_title %}
+{% block body %}
+    <h2>Məqalə detay</h2>
+    <div class="articles">
+        <ul>
+            <li>
+                <h3>{{article.author}}</h3>
+                <h4>{{article.title}}</h4>
+                <p>{{article.content|safe}}</p>
+                <small>{{article.created_date}}</small>
+                <hr>
+            </li>
+        </ul>
+    </div>
+{% endblock body %}

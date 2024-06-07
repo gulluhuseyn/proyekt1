@@ -39,7 +39,7 @@ def login_view(request):
             return render(request,"login.html")
         
         login(request,user)
-        messages.success(request,"Xoş gəmisiniz...")
+        messages.success(request,f"Xoş gəlmisiniz {request.user.username}")
         
         return redirect("home")
 
