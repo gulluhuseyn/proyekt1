@@ -7,10 +7,14 @@
     <div class="articles">
         <ul>
             <li>
-                <h3>{{article.author}}</h3>
-                <h4>{{article.title}}</h4>
-                <p>{{article.content|safe}}</p>
-                <small>{{article.created_date}}</small>
+                <h3>Yazar:{{article.author}}</h3>
+                <h4>Başlıq:{{article.title}}</h4>
+                <p>Məzmun:{{article.content|safe}}</p>
+                <small>Yaradılış tarixi:{{article.created_date}}</small>
+                <br><br>
+                {% if article.image %}
+                    <img src="{{article.image.url}}" alt="">
+                {% endif %}
                 <hr>
             </li>
         </ul>

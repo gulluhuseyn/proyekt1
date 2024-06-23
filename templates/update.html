@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% block page_title %}
-    Məqalə əlavə et
+    Məqaləni güncəllə
 {% endblock page_title %}
 
 {% block body %}
-    <h2>Məqalənizi əlavə edin:</h2>
+    <h2>Məqalənizi güncəlləyin:</h2>
     <form method = "post" enctype = "multipart/form-data">
         {% csrf_token %}
         {{form.media}}
         {{form.as_p}}
-        <button class = "btn">Əlavə edin</button>
+        <button class = "btn">Güncəllə</button>
     </form>
 {% endblock body %}

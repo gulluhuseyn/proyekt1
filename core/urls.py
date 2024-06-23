@@ -28,6 +28,8 @@ urlpatterns = [
     path("article-details/<int:id>", article_details_view, name = "article-details"),
     path("dashboard", dashboard_view, name = "dashboard"),
     path("add-articles", add_articles_view, name = "add-articles"),
+    path("update/<int:id>", article_update_view, name = "update"),
+    path("delete/<int:id>", article_delete_view, name = "delete"),
     path("account/",include("account.urls")),
     path('admin/', admin.site.urls),
 ]

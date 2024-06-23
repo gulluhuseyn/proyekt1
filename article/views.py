@@ -16,6 +16,10 @@ def contact_view(request):
 
 @login_required(login_url = "account:login")
 def articles_view(request):
+    keyword = request.GET.get("keyword")
+    if keyword:
+        articles = Article.objects.filter(title__contains = keyword)
+        return render(request, "articles.html", {'articles':articles})
     articles = Article.objects.all()
     return render(request, "articles.html", {'articles':articles})
 
@@ -45,3 +49,27 @@ def add_articles_view(request):
 
     context = {"form":form}
     return render(request, "addarticles.html",context)
+
+@login_required(login_url = "account:login")
+def article_update_view(request,id):
+    article = get_object_or_404(Article,id = id)
+    form = ArticleForm(request.POST or None ,request.FILES or None,instance = article)
+
+    if form.is_valid():
+        article = form.save(commit=False)
+        article.author = request.user
+        article.save()
+
+        messages.success(request,"Məqaləniz uğurla güncəlləndi...")
+        return redirect("dashboard")
+
+    context = {"form":form}
+    return render(request, "update.html",context)
+
+@login_required(login_url = "account:login")
+def article_delete_view(request,id):
+    article = get_object_or_404(Article,id = id)
+    article.delete()
+
+    messages.success(request,"Məqaləniz uğurla silindi...")
+    return redirect("dashboard")

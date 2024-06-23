@@ -4,18 +4,30 @@
 {% endblock page_title %}
 {% block body %}
     <h2>Bizim məqalələrimiz</h2>
-    <div class="articles">
-        <ul>
-            {% for article in articles %}
-                <li>
-                    <h3>{{article.author}}</h3>
-                    <h4>{{article.title}}</h4>
-                    <p>{{article.content}}</p>
-                    <small>{{article.created_date}}</small>
-                    <hr>
-                </li>
-                
-            {% endfor %}
-        </ul>
+    <div class = "search_form">
+        <form>
+            {% csrf_token %}
+            <input name = "keyword" type = "text" placeholder = "Axtar...">
+            <button type = "submit" class = "btn">Axtar</button>
+        </form>
     </div>
+
+    {% if articles %}
+        <div class="articles">
+            <ul>
+                {% for article in articles %}
+                <li>
+                    <h3>Yazar:{{article.author}}</h3>
+                    <h4>Başlıq:{{article.title}}</h4>
+                    <p>Məzmun:{{article.content|safe}}</p>
+                    <small>Yaradılış tarixi:{{article.created_date}}</small>
+                    <hr>
+                </li>   
+                {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+        <div class="alert_warning">Məqalə yoxdur...</div>
+    {% endif %}
+    
 {% endblock body %}
